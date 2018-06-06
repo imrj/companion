@@ -35,6 +35,7 @@ pushd ~/GitHub
  git clone --recurse-submodules -b video_streaming https://github.com/shortstheory/APWeb.git
  pushd APWeb
   git submodule update --init
+  time (make clean | cat)
   time (make | cat)
   cp web_server \$APWEB_HOME
  popd

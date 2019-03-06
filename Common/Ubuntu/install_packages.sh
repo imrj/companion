@@ -24,8 +24,8 @@ apt-get -y install python3-dev python3-numpy python3-pip python3-opencv
 apt-get install -y libxml2-dev libxslt1.1 libxslt1-dev libz-dev
 time pip3 install future lxml
 
-# install dronekit
-pip3 install dronekit dronekit-sitl # also installs pymavlink
+# install dronekit and pymavlink
+pip3 install dronekit dronekit-sitl pymavlink
 
 # install mavproxy
 pip3 install mavproxy

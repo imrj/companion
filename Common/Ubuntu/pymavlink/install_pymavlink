@@ -22,7 +22,7 @@ pushd ~/GitHub
  git clone --recurse-submodules https://github.com/ardupilot/pymavlink
  pushd pymavlink
   export MDEF=~/GitHub/mavlink/message_definitions
-  python setup.py build install --user --force
+  python3 setup.py build install --user --force
  popd
 popd
 

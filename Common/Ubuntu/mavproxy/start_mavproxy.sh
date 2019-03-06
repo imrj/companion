@@ -7,7 +7,7 @@ set -x
 #    - main connection to cmavnode via UDP
 #    - udp connection on port 9000 for use by other processes
 #    - udp broadcast connection to allow multiple GCSs to connect to the flight controller via mavproxy
-mavproxy.py \
+python3 mavproxy.py \
     --source-system 217 \
     --master localhost:14655 \
     --mav10

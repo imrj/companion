@@ -18,17 +18,17 @@ apt-get update
 apt-get dist-upgrade -y
 
 # install python, numpy, pip
-apt-get -y install python-dev python-numpy python3-numpy python-pip python-opencv
+apt-get -y install python3-dev python3-numpy python3-pip python3-opencv
 
 # pymavlink deps:
 apt-get install -y libxml2-dev libxslt1.1 libxslt1-dev libz-dev
-time pip install future lxml
+time pip3 install future lxml
 
 # install dronekit
-pip install dronekit dronekit-sitl # also installs pymavlink
+pip3 install dronekit dronekit-sitl # also installs pymavlink
 
 # install mavproxy
-pip install mavproxy
+pip3 install mavproxy
 apt-get -y install screen
 
 # install git

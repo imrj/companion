@@ -3,4 +3,4 @@
 set -e
 set -x
 
-./apsync.py
+python3 ./apsync.py

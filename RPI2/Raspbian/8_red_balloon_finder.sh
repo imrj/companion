@@ -11,7 +11,7 @@ set -e
 set -x
 
 # cherrypy web server (used by red balloon finder)
-pip install cherrypy
+pip3 install cherrypy
 
 # install red balloon finder
 

@@ -15,5 +15,5 @@ apt-get install -y gstreamer1.0-alsa gstreamer1.0-plugins-ugly-doc gstreamer1.0-
 pip3 install numpy opencv-python
 
 # picamera (likely already included from opencv)
-pip install "picamera[array]"
+pip3 install "picamera[array]"
 

@@ -18,7 +18,7 @@ fi
 set -e
 set -x
 
-# apt-get install -y cmake libboost-dev libboost-thread-dev libboost-program-options-dev libconfig++-dev libreadline-dev
+sudo apt-get -y install automake libtool
 
 adduser $NORMAL_USER dialout
 

@@ -10,7 +10,8 @@ fi
 set -e
 set -x
 
-apt-get install ninja-build libgstreamer-plugins-base1.0* libgstreamer1.0-dev libgstrtspserver-1.0-dev gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly python3-pip
+apt-get -y install ninja-build libgstreamer-plugins-base1.0* libgstreamer1.0-dev libgstrtspserver-1.0-dev python3-pip
+
 modprobe bcm2835-v4l2
 echo 'bcm2835-v4l2' >> /etc/modules
 
@@ -22,11 +23,12 @@ set -e
 set -x
 
 pushd ~/GitHub
+ rm -rf APStreamline
  git clone https://github.com/shortstheory/adaptive-streaming.git APStreamline
  pushd APStreamline
   meson build
   pushd build
-   meson configure -Dprefix=$HOME/start_apstreamline/
+   meson configure -Dprefix=/home/apsync/start_apstreamline/
    time ninja
    sudo ninja install
   popd

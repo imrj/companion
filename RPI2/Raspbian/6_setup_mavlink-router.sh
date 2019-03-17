@@ -6,5 +6,5 @@ set -x
 . config.env
 
 pushd ../../Common/Ubuntu/mavlink-router
-./install_mavlink-router.sh
+./install_mavlink-router
 popd

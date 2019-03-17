@@ -18,14 +18,14 @@ apt-get update
 apt-get dist-upgrade -y
 
 # install python, numpy, pip
-apt-get -y install python3-dev python3-numpy python3-pip python3-opencv
+apt-get -y install python3-dev python3-numpy python3-pip
 
 # pymavlink deps:
 apt-get install -y libxml2-dev libxslt1.1 libxslt1-dev libz-dev
 time pip3 install future lxml
 
-# install dronekit and pymavlink
-pip3 install dronekit dronekit-sitl pymavlink
+# install dronekit and pymavlink. Need 2.2.10 for APWeb
+pip3 install dronekit dronekit-sitl pymavlink==2.2.10
 
 # install mavproxy
 pip3 install mavproxy

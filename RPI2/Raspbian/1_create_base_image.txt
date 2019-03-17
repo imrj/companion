@@ -37,11 +37,7 @@ ssh-copy-id apsync@raspberrypi.local
 ssh apsync@raspberrypi.local
 
 # enable the camera:
-sudo raspi-config
-# navigate Interfacing Options -> P1 Camera
-# select yes and confirm
-# navigate to keyboard, change to US-layout
-# reboot
+sudo raspi-config nonint do_camera 0
 
 # log back in as apsync/apsync
 ssh apsync@raspberrypi.local
@@ -55,7 +51,7 @@ time sudo apt-get install -y git # 1m30s
 # get a copy of the companion repository onto the Pi:
 mkdir GitHub
 pushd GitHub
-time git clone https://github.com/ArduPilot/companion
+time git clone --single-branch --branch combined https://github.com/stephendade/companion
 # usually at this point I rsync over the top of this checkout with the same repo on my laptop:
 # rsync -aP companion/ apsync@raspberrypi.local:GitHub/companion --delete --delete-excluded --exclude=*.img.xz --exclude=*actory.img --exclude mav.tlog --exclude mav.tlog.raw --exclude=*/jetpack_download/* --exclude=*/JetPack*
 
@@ -72,18 +68,14 @@ sudo reboot # network goes screwy after nm installed
 ssh apsync@apsync.local
 pushd GitHub/companion/RPI2/Raspbian || echo "Failed"
 time sudo ./3_wifi_access_point.sh || echo "Failed" # Failure expected!
-time sudo ./3_wifi_client.sh # instant
 sudo reboot   # reboot required before AP will work
 # log back in again as apsync/apsync
 sudo nmcli connection up WiFiAP #  may be required first time!
 pushd GitHub/companion/RPI2/Raspbian || echo "Failed"
 time sudo ./6_setup_mavlink-router.sh || echo "Failed" # ~2m
 time sudo ./7_dflogger.sh || echo "Failed" # 13m
-time sudo ./6_setup_video.sh || echo "Failed"  #31m
-time sudo ./setup_video_streaming || echo "Failed"  # 1m
-time sudo ./5_setup_mavproxy.sh # 2s
-time sudo ./install_apweb # 2m33s
-time sudo ./install_apstreamline
+time sudo ./8_install_apstreamline.sh
+time sudo ./9_install_apweb.sh # 2m33s
 time sudo ./resize_filesystem_on_next_boot
 popd
 
@@ -97,7 +89,7 @@ perl -pe 's%(/usr/lib/dhcpcd5/dhcpcd)%$1 --noipv4ll%' -i /etc/systemd/system/dhc
 # disable dhcpcd
 sudo systemctl disable dhcpcd
 # disable the plugin scanner, which stops video streaming working:
-sudo chmod -x /usr/lib/arm-linux-gnueabihf/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
+# sudo chmod -x /usr/lib/arm-linux-gnueabihf/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
 
 # enable client mode to work:
  # echo "dtoverlay=pi3-disable-bt" >>/boot/config.txt

@@ -10,7 +10,5 @@ set -x
 
 . config.env
 
-apt-get install -y python3-pip
-
 # install packages common to all
 ../../Common/Ubuntu/install_packages.sh
